@@ -44,11 +44,20 @@
           name: fullname, 
           destination: destination, 
           details: details
-      };
-      analytics.identify('1234', {
-          email: email, 
-          name: fullname
-      });
+      };    
+        analytics.identify({
+  userId: '44448888',
+  traits: {
+    name: fullname,
+    email: email,
+  },
+  integrations: {
+    Klaviyo: {
+      listId: '', 
+      confirmOptin: false 
+    }
+  }
+});
       analytics.track('destination submitted', user, function() {
           window.location.href = "";
       });
