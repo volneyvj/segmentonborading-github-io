@@ -44,20 +44,18 @@
           name: fullname, 
           destination: destination, 
           details: details
-      };    
-        analytics.identify({
-  userId: '556677',
-  traits: {
-    name: fullname,
-    email: email,
-  },
+      };         
+      analytics.identify('user_123', {
+  email: 'jane.kim@example.com',
+  name: 'Jane Kim'
+}, {
   integrations: {
-    Klaviyo: {
+      Klaviyo: {
       listId: 'VKCuQn', 
-      confirmOptin: true 
+      confirmOptin: false 
     }
   }
-});
+});  
       analytics.track('destination submitted', user, function() {
           window.location.href = "";
       });
