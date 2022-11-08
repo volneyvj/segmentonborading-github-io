@@ -40,6 +40,8 @@
     <br><br> 
     Email: <input name="email" required="" size="75" type="email"/> 
     <br><br>
+     Email: <input name="iduser" required="" size="75" type="text"/> 
+    <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
 
@@ -50,6 +52,7 @@
       var form = e.target;
       var email = form["email"].value;
       var fullname = form["fullname"].value;
+      var iduser = form["iduser"].value;
       var destination = form["destination"].value;
       var details = form["details"].value;
       var user = {
@@ -58,9 +61,9 @@
           destination: destination, 
           details: details
       };         
-      analytics.identify('user_123', {
-  email: 'jane.kim@example.com',
-  name: 'Jane Kim'
+      analytics.identify(iduser, {
+  email: email,
+  name: fullname
 }, {
   integrations: {
       Klaviyo: {
