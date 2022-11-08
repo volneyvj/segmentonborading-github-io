@@ -61,16 +61,22 @@
           destination: destination, 
           details: details
       };         
-      analytics.identify(iduser, {
-  email: email,
-  name: fullname
-}, {
+          analytics.identify({
+  userId: iduser,
+  traits: {
+    name: fullname, 
+    email: email,
+    plan: 'Enterprise',
+    friends: 42
+  },
   integrations: {
-      Klaviyo: {
-      listId: 'VKCuQn', 
-      confirmOptin: false 
+    Klaviyo: {
+      listId: 'VKCuQn', // will override whatever it is in the UI setting
+      confirmOptin: false // optional
     }
   }
+});
+          
 });  
       analytics.track('destination submitted', user, function() {
           window.location.href = "";
