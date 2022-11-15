@@ -61,7 +61,10 @@
           destination: destination, 
           details: details
       };         
-          analytics.identify({
+  
+        
+       /*
+        analytics.identify({
   userId: iduser,
   traits: {
     name: fullname, 
@@ -76,7 +79,14 @@
     }
   }
 });
-          
+     */ 
+        analytics.identify({
+        first_name: 'thais',
+        last_name: 'libi',
+        email: 'libi222@example.com'
+        });
+    
+      
 });  
       analytics.track('destination submitted', user, function() {
           window.location.href = "";
