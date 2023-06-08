@@ -4,25 +4,34 @@
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
 
   <script>
-  !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="oFNkHiJK7trjQflr6p31yYYJfGrSuASP";;analytics.SNIPPET_VERSION="4.15.3";
-  analytics.load("oFNkHiJK7trjQflr6p31yYYJfGrSuASP");
-  analytics.page();
-  }}();
-</script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ";;analytics.SNIPPET_VERSION="4.15.3";
+      analytics.load("MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ");
+      analytics.page();
+      }}();
 
-    
-   <!-- Google tag (gtag.js) 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-12DLW5WJNB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+analytics.ready(function(){
 
-  gtag('config', 'G-12DLW5WJNB');
-</script>
-    
-   -->
-    
+  const sessionIdPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'session_id', resolve)
+});
+
+  const sessionNumPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'session_number', resolve)
+});
+        
+const clientIdPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'client_id', resolve)
+});
+
+
+Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(function(session_data) {
+    console.log("session ID: "+session_data[0]);
+    console.log("session Number: "+session_data[1]);
+    console.log("Client ID: "+session_data[2]);
+  });
+})
+    </script>
+      
 </head> 
 <body> 
 <h1>What is your favorite place to travel?</h1> 
@@ -99,11 +108,7 @@
       
 });  
         
- analytics.group("33", {
-  organization_id: 33,
-  name: "Swapcard 2" ,
-  website: "https://1b649e26-7d7f-475a-b847-a65e1041a77f.com"
-});  
+
    
        
         
