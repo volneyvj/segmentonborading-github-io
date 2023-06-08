@@ -29,6 +29,10 @@ Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(functio
     console.log("session Number: "+session_data[1]);
     console.log("Client ID: "+session_data[2]);
   });
+
+     var sessionid = session_data[0]
+    var sessionnumber = session_data[1]
+    var clientid = session_data[2]       
 })
     </script>
 <!-- Google tag (gtag.js) -->
@@ -39,6 +43,8 @@ Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(functio
   gtag('js', new Date());
 
   gtag('config', 'G-12DLW5WJNB');
+    
+    
 </script>
     
     
@@ -59,7 +65,7 @@ Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(functio
     <br><br> 
     Email: <input name="email" size="75" type="email"/> 
     <br><br>
-     ID: <input name="iduser"size="75" type="text"/> 
+     ID: <input name="user"size="75" type="text"/> 
     <br><br>
     <input name="submit" type="submit" value="submit"/>
 </form> 
@@ -109,12 +115,32 @@ Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(functio
 -->
     
     <script>
-        analytics.identify({
-        first_name: 'thais',
-        last_name: 'libi',
-        email: 'libi22@example.com`
-        });
-    
+  var email = document.getElementById("email").value; 
+var userid = document.getElementById("user").value;
+
+
+analytics.identify(user, {
+  email: email,
+  name: 'Jane Kim'
+}, {
+  integrations: {
+    'Intercom': {
+      "user_hash": '1234567890'
+    },
+  }
+});
+
+analytics.track('New Event', {
+  email: email
+}, {
+  integrations: {
+    'All': false,
+    'Intercom': true,
+    "ga4-sessionid": sessionid,
+    "ga4-sessionnumber": sessionnumber,
+    "Client ID": clientid
+  }
+});
       
 });  
         
