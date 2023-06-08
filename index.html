@@ -24,6 +24,20 @@ Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(functio
     console.log("session ID: "+session_data[0]);
     console.log("session Number: "+session_data[1]);
     console.log("Client ID: "+session_data[2]);
+
+
+    analytics.track('New Event', {
+  email: email
+}, {
+  integrations: {
+    'All': false,
+    'Intercom': true,
+    "ga4-sessionid": session_data[0],
+    "ga4-sessionnumber": session_data[1],
+    "Client ID": session_data[2]
+  }
+});
+
   });
 
 var email = document.getElementById("email").value; 
@@ -39,20 +53,7 @@ analytics.identify(user, {
       "user_hash": '1234567890'
     },
   }
-});
-
-analytics.track('New Event', {
-  email: email
-}, {
-  integrations: {
-    'All': false,
-    'Intercom': true,
-    "ga4-sessionid": session_data[0],
-    "ga4-sessionnumber": session_data[1],
-    "Client ID": session_data[2]
-  }
-});
-    
+}); 
 })
     </script>
 
