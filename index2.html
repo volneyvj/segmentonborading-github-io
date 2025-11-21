@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
+
+  <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ";;analytics.SNIPPET_VERSION="4.15.3";
+      analytics.load("MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ");
+      analytics.page();
+      }}();
+
+analytics.ready(function(){
+  const sessionIdPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'session_id', resolve)
+});
+  const sessionNumPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'session_number', resolve)
+});     
+const clientIdPromise = new Promise(resolve => {
+  gtag('get', 'G-12DLW5WJNB', 'client_id', resolve)
+});
+
+Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(function(session_data) {
+    console.log("session ID: "+session_data[0]);
+    console.log("session Number: "+session_data[1]);
+    console.log("Client ID: "+session_data[2]);
+
+
+    analytics.track('New Event', {
+  email: email
+}, {
+  integrations: {
+    'All': false,
+    'Intercom': true,
+    "ga4-sessionid": session_data[0],
+    "ga4-sessionnumber": session_data[1],
+    "Client ID": session_data[2]
+  }
+});
+
+  });
+
+var email = document.getElementById("email").value; 
+var userid = document.getElementById("user").value;
+
+
+analytics.identify(user, {
+  email: email,
+  name: 'Jane Kim'
+}, {
+  integrations: {
+    'Intercom': {
+      "user_hash": '1234567890'
+    },
+  }
+}); 
+})
+    </script>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12DLW5WJNB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-12DLW5WJNB');
+</script>
+    
+    
+</head> 
+<body> 
+<h1>What is your favorite place to travel?</h1> 
+<p>I am building a directory of the sweetest travel destinations.</p>  
+<form name="travel" onsubmit="identify(event)">
+     What is your favorite travel destination?
+    <input name="destination" required="" size="81" type="text"/> 
+    <br><br><br> 
+    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    <br><br> 
+    <textarea cols="81" name="details" rows="10">
+    </textarea> 
+    <br><br> 
+    Name: <input name="fullname" size="75" type="text"/> 
+    <br><br> 
+    Email: <input id="email" name="email" size="75" type="email"/> 
+    <br><br>
+     ID: <input id="user" name="user"size="75" type="text"/> 
+    <br><br>
+    <input name="submit" type="submit" value="submit"/>
+</form> 
+
+
+
+</body> 
+</html>
