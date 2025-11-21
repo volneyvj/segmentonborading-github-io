@@ -3,72 +3,115 @@
 <head> 
     <title>Home Questionnaire<span id="selection-marker-1" class="redactor-selection-marker"></span></title> 
 
-  <script>
-      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ";;analytics.SNIPPET_VERSION="4.15.3";
-      analytics.load("MKJFu16QXiDCQJD6C8iOtmdNBNSMmgkQ");
-      analytics.page();
-      }}();
+ 
+  <script data-segment-write-key="oFNkHiJK7trjQflr6p31yYYJfGrSuASP">
+    !(function () {
+      var i = "analytics",
+        analytics = (window[i] = window[i] || []);
+      if (!analytics.initialize)
+        if (analytics.invoked)
+          window.console &&
+            console.error &&
+            console.error("Segment snippet included twice.");
+        else {
+          analytics.invoked = !0;
+          analytics.methods = [
+            "trackSubmit",
+            "trackClick",
+            "trackLink",
+            "trackForm",
+            "pageview",
+            "identify",
+            "reset",
+            "group",
+            "track",
+            "ready",
+            "alias",
+            "debug",
+            "page",
+            "screen",
+            "once",
+            "off",
+            "on",
+            "addSourceMiddleware",
+            "addIntegrationMiddleware",
+            "setAnonymousId",
+            "addDestinationMiddleware",
+            "register",
+          ];
+          analytics.factory = function (e) {
+            return function () {
+              if (window[i].initialized)
+                return window[i][e].apply(window[i], arguments);
+              var n = Array.prototype.slice.call(arguments);
+              if (
+                [
+                  "track",
+                  "screen",
+                  "alias",
+                  "group",
+                  "page",
+                  "identify",
+                ].indexOf(e) > -1
+              ) {
+                var c = document.querySelector("link[rel='canonical']");
+                n.push({
+                  __t: "bpc",
+                  c: (c && c.getAttribute("href")) || void 0,
+                  p: location.pathname,
+                  u: location.href,
+                  s: location.search,
+                  t: document.title,
+                  r: document.referrer,
+                });
+              }
+              n.unshift(e);
+              analytics.push(n);
+              return analytics;
+            };
+          };
+          for (var n = 0; n < analytics.methods.length; n++) {
+            var key = analytics.methods[n];
+            analytics[key] = analytics.factory(key);
+          }
+          analytics._writeKey = document.currentScript.getAttribute("data-segment-write-key");
 
-analytics.ready(function(){
-  const sessionIdPromise = new Promise(resolve => {
-  gtag('get', 'G-12DLW5WJNB', 'session_id', resolve)
-});
-  const sessionNumPromise = new Promise(resolve => {
-  gtag('get', 'G-12DLW5WJNB', 'session_number', resolve)
-});     
-const clientIdPromise = new Promise(resolve => {
-  gtag('get', 'G-12DLW5WJNB', 'client_id', resolve)
-});
+          var r = document.getElementsByTagName("script")[0];
+          analytics.load = function (key, n) {
+            var t = document.createElement("script");
+            t.type = "text/javascript";
+            t.async = !0;
+            t.setAttribute("data-global-segment-analytics-key", i);
+            t.src =
+              "https://cdn.segment.com/analytics.js/v1/" +
+              key +
+              "/analytics.min.js";
+            r.parentNode.insertBefore(t, r);
+            analytics._loadOptions = n;
+          };
 
-Promise.all([sessionIdPromise, sessionNumPromise, clientIdPromise]).then(function(session_data) {
-    console.log("session ID: "+session_data[0]);
-    console.log("session Number: "+session_data[1]);
-    console.log("Client ID: "+session_data[2]);
+          analytics.loadWithSignals = function (key, n) {
+            var signalsScript = document.createElement("script");
+            signalsScript.type = "text/javascript";
+            signalsScript.src =
+              "https://cdn.jsdelivr.net/npm/@segment/analytics-signals@latest/dist/umd/analytics-signals.umd.js";
+            signalsScript.async = !0;
+            r.parentNode.insertBefore(signalsScript, r);
+            signalsScript.onload = function () {
+              var signalsPlugin = new SignalsPlugin();
+              analytics.register(signalsPlugin);
+              analytics.load(key, n)
+            };
+          };
 
-
-    analytics.track('New Event', {
-  email: email
-}, {
-  integrations: {
-    'All': false,
-    'Intercom': true,
-    "ga4-sessionid": session_data[0],
-    "ga4-sessionnumber": session_data[1],
-    "Client ID": session_data[2]
-  }
-});
-
-  });
-
-var email = document.getElementById("email").value; 
-var userid = document.getElementById("user").value;
-
-
-analytics.identify(user, {
-  email: email,
-  name: 'Jane Kim'
-}, {
-  integrations: {
-    'Intercom': {
-      "user_hash": '1234567890'
-    },
-  }
-}); 
-})
+          analytics.loadWithSignals(analytics._writeKey)
+          analytics.page()
+        }
+    })();
+        
     </script>
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-12DLW5WJNB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-12DLW5WJNB');
-</script>
     
-    
+   
 </head> 
 <body> 
 <h1>What is your favorite place to travel?</h1> 
@@ -77,7 +120,7 @@ analytics.identify(user, {
      What is your favorite travel destination?
     <input name="destination" required="" size="81" type="text"/> 
     <br><br><br> 
-    Any recommendations (cool things to do, places to visit or restaurants to eat)? 
+    2Any recommendations (cool things to do, places to visit or restaurants to eat)? 
     <br><br> 
     <textarea cols="81" name="details" rows="10">
     </textarea> 
